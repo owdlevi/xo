@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
+import { Button, Container, Message } from 'semantic-ui-react'
 import GameItem from './GameItem'
-
 
 const Game = () => {
    
@@ -11,7 +11,7 @@ const Game = () => {
     const [winner, setWinner] = useState('');
 
     const updateGame = (itemIndex) => {
-        if (gameItems[itemIndex] === '') {
+        if (gameItems[itemIndex] === '' && !gameOver) {
             let newGame = Object.assign([], gameItems, {[itemIndex]: turn});
             setGameItems(newGame);
             setMoves(moves + 1);
@@ -53,16 +53,25 @@ const Game = () => {
         })
     }
 
+    const winnerMessagge = `The winner is: ${winner}`
+
     return (
-    <div>
-        <div className="Game">
-            {gameItems.map( (item, index) =>  <GameItem key={index} gameItem={item} gameIndex={index} updateGame={updateGame} /> )}
-        </div>
-        <div className="gameDashboard">
-            { (gameOver) ? <button onClick={() => newGame()}>New game</button> : '' }
-            { (winner) ? `Winner is: ${winner}` : '' }
-            
-        </div>
+    <div className="main">
+        <Container className="Game-Container" textAlign="center">
+            <div className="Game">
+                {gameItems.map( (item, index) =>  <GameItem key={index} gameItem={item} gameIndex={index} updateGame={updateGame} /> )}
+            </div>
+          
+            <div className="gameDashboard">
+                { (gameOver) ? <Button color='green' onClick={() => newGame()}>New game</Button> : '' }
+                { (winner) ? <Message
+                    header = {winnerMessagge} size="small"
+                /> : '' }
+            </div>
+          
+        </Container>
+        
+       
     </div>
     )
 }

@@ -9,14 +9,18 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
+.main{
+  width: 300px;
+  margin-top: 200px;
+}
 .Game{
-  width: 123px;
-  min-height: 120px;
-  margin-top: 100px;
   display: flex;
-  flex-flow: row wrap;
+  width: 123px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: 40px;
   justify-content: flex-start;
+  flex-flow: row wrap;
 }
 
 .GameItem{
@@ -52,4 +56,15 @@
 }
 .black{
   color: black;
+}
+
+.gameDashboard{
+  margin-top: 40px;
+}
+
+.Game-Container{
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  display: flex!important;
 }
